@@ -1,0 +1,175 @@
+body {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    text-align: center;
+    box-sizing: border-box;
+
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    font-size: 1rem;
+
+    background-image: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%);
+}
+
+#herobox {
+    width: 95%;
+    min-width: 300px;
+    max-width: 400px;
+    margin: 40px auto;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-radius: 10px;
+    align-items: center;
+    background-color: hsl(200, 60%, 99%);
+    box-shadow: 0px 5px 10px hsl(226, 11%, 37%, 0.2);
+}
+
+#mode {
+    background-color: hsl(0, 0%, 93%);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    max-height: 40px;
+}
+
+input {
+    appearance: none;
+    cursor: pointer;
+}
+
+label {
+    cursor: pointer;
+}
+
+.radio {
+    background-color: hsl(200, 60%, 99%);
+    margin: 0 10px;
+    padding: 6px 12px;
+    border-radius: 50%;
+    border:1px solid hsl(0, 0%, 78%, 0.5);
+    box-shadow: 0px 1px 4px hsl(226, 11%, 37%, 0.2);
+    cursor: pointer;
+}
+
+.radio:hover, .radio:focus, #mode:hover, #mode:focus, section button:hover, section:focus, .switch:hover, .switch:focus {
+    outline:2px solid hsl(3, 86%, 64%);
+    outline-offset: 1px;
+}
+
+.selected {
+    background-color: hsl(3, 86%, 64%);
+    color: hsl(200, 60%, 99%);
+}
+
+button {
+    background-color: hsl(200, 60%, 99%);
+    color: hsl(227, 75%, 14%);
+}
+
+section { 
+    width: 350px;
+    border-radius: 20px;
+    text-align: start;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.switch {
+    width: 50px; height: 26px;
+    background-color: hsl(0, 0%, 78%, 0.5);
+    position: relative;
+}
+
+.switch-circle {
+    width:20px; height:20px;
+    border-radius: 100%;
+    background-color:rgb(255, 255, 255);
+    position: absolute;
+    top:3px; left:3px;
+}
+
+.switch:checked {
+    background-color: hsl(3, 86%, 64%);
+}
+
+.switch:checked+span{
+    left:auto; right:3px;
+}
+
+/* COLORS */
+.neutral-900 { color: hsl(227, 75%, 14%) }
+.neutral-800 { color: hsl(226, 25%, 17%) }
+.neutral-700 { color: hsl(225, 23%, 24%)}
+.neutral-600 { color: hsl(226, 11%, 37%) }
+.neutral-0 { color:hsl(200, 60%, 99%) }
+
+/* DARK MODE */
+.nav-dark {
+    background-color: hsl(226, 25%, 17%) !important;
+}
+
+#mode.dark, .dark {
+    background-color: hsl(225, 23%, 24%);
+    color:  hsl(200, 60%, 99%);
+}
+
+.selected-dark {
+    background-color: hsl(3, 86%, 64%);
+    color: hsl(227, 75%, 14%);
+}
+
+.section-dark {
+    background-color: hsl(226, 25%, 17%) !important;
+    border-color: hsl(226, 11%, 37%)  !important;
+}
+
+.section-dark h2 {
+    color: hsl(200, 60%, 99%) !important;
+}
+
+.section-dark p {
+   color: hsl(217, 61%, 90%, 0.6);
+}
+
+.section-dark button {
+    background-color: hsl(225, 23%, 24%);
+    color:  hsl(200, 60%, 99%);
+    border-color: hsl(217, 61%, 90%, 0.4) !important;
+}
+
+/* MEDIA QUERIES */
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {  
+    #herobox {
+        min-width: 990px;
+        max-width: 1200px;
+    }
+
+    #extensions {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    h1 {
+        text-align: start;
+    }
+
+    form {
+        justify-content: end;
+    }
+}
