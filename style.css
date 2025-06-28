@@ -1,7 +1,8 @@
 body {
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     display: flex;
+    justify-content: center;
     text-align: center;
     box-sizing: border-box;
 
@@ -16,9 +17,9 @@ body {
 }
 
 #herobox {
-    width: 95%;
-    min-width: 300px;
-    max-width: 400px;
+    min-width: 375px;
+    max-width: 550px;
+    padding: 0 5%;
     margin: 40px auto;
 }
 
@@ -64,7 +65,7 @@ label {
     cursor: pointer;
 }
 
-.radio:hover, .radio:focus, #mode:hover, #mode:focus, section button:hover, section:focus, .switch:hover, .switch:focus {
+.radio:hover, #mode:hover, section button:hover, .switch:hover .switch-input {
     outline:2px solid hsl(3, 86%, 64%);
     outline-offset: 1px;
 }
@@ -80,16 +81,25 @@ button {
 }
 
 section { 
-    width: 350px;
+    min-width: 250px;
+    max-width: 400px;
     border-radius: 20px;
     text-align: start;
     background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    /* to animate hiding a section */
+    opacity: 1;
+    transition: opacity 0.5s ease;
 }
 
-.switch {
+section.hidden {
+    opacity: 0;
+}
+
+.switch-input {
     width: 50px; height: 26px;
     background-color: hsl(0, 0%, 78%, 0.5);
     position: relative;
@@ -101,13 +111,14 @@ section {
     background-color:rgb(255, 255, 255);
     position: absolute;
     top:3px; left:3px;
+    cursor: pointer;
 }
 
-.switch:checked {
+.switch-input:checked {
     background-color: hsl(3, 86%, 64%);
 }
 
-.switch:checked+span{
+.switch-input:checked+span{
     left:auto; right:3px;
 }
 
@@ -156,8 +167,8 @@ section {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {  
     #herobox {
-        min-width: 990px;
-        max-width: 1200px;
+        min-width: 80%;
+        max-width: 95%;
     }
 
     #extensions {

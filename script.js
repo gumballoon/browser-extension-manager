@@ -101,19 +101,28 @@ for (i of data){
     <div class="mt-3 mb-2 d-flex justify-content-between">
         <button class="rounded-pill py-1 px-3 border">Remove</button>
                     
-        <div class="position-relative align-self-center my-0">
-            <input type="checkbox" class="rounded-pill switch">
+        <div class="position-relative align-self-center my-0 rounded-pill switch">
+            <input type="checkbox" class="rounded-pill switch-input">
             <span class="switch-circle"></span>
         <div>
     </div>`
 
-    if(i.isActive) section.querySelector('.switch').checked = true;
+    if(i.isActive) section.querySelector('.switch-input').checked = true;
 
     extensions.appendChild(section)
 }
 
 // after populating
 const allSections = document.querySelectorAll('section');
+
+// check/uncheck the switch-input when the switch-circle is clicked on
+for (section of allSections) {
+    const switchInput = section.querySelector('.switch-input');
+    const switchCircle = section.querySelector('.switch-circle');
+    switchCircle.addEventListener('click', function(){
+        switchInput.checked = !switchInput.checked;
+    })
+}
 
 // Dark move vs. Light mode
 mode.addEventListener('click', function(){
@@ -173,7 +182,7 @@ function showSections(input){
     }
 }
 
-// selected vs. selected-dark + 
+// selected vs. selected-dark
 for (let input of allRadioInputs){
     input.addEventListener('change', function(){
         for (let i of allRadioInputs){
@@ -193,7 +202,7 @@ for (let input of allRadioInputs){
 }
 
 // update Active vs. Inactive w/ every Switch change
-const allSwitchButtons = document.querySelectorAll('.switch');
+const allSwitchButtons = document.querySelectorAll('.switch-input');
 function getCurrentFilter() {
     for (radioInput of allRadioInputs){
         if(radioInput.checked){
@@ -207,10 +216,13 @@ for (let switchButton of allSwitchButtons){
     })
 }
 
-// to remove a section
+// to remove a section (after hiding it w/ opacity & transition)
 for (let section of allSections){
     const remove = section.querySelector('button');
     remove.addEventListener('click', function(){
-        section.remove();
+        section.classList.add('hidden');
+        section.addEventListener('transitionend', function(){
+            section.remove();
+        })
     })
 }
