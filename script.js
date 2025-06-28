@@ -110,20 +110,24 @@ for (i of data){
     const switchInput = section.querySelector('.switch-input');
     const switchCircle = section.querySelector('.switch-circle');
     
-    // set the checked & tittle attributes
+    // set the checked, title & aria-label attributes
     if(i.isActive) {
         switchInput.checked = true;
         switchInput.parentElement.title = 'Disable the extension';
+        switchInput.parentElement.ariaLabel = 'Disable the extension';
     } else {
         switchInput.parentElement.title = 'Enable the extension';
+        switchInput.parentElement.ariaLabel = 'Enable the extension';
     }
     
     // dynamically update the title attribute of the switch
     switchInput.addEventListener('change', function(){
         if (this.checked) {
             this.parentElement.title = 'Disable the extension';
+            this.parentElement.ariaLabel = 'Disable the extension';
         } else {
             this.parentElement.title = 'Enable the extension';
+            this.parentElement.ariaLabel = 'Enable the extension';
         }
 
     })
