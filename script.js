@@ -95,7 +95,7 @@ for (i of data){
 
         <div class="col-9 px-0">
             <h2 class="neutral-900 fw-semibold mt-3 fs-4">${i.name}</h2>
-            <p class="neutral-700 fw-light">${i.description}</p>
+            <p class="neutral-700 fw-light me-2">${i.description}</p>
         </div>
     </div>
     <div class="mt-3 mb-2 d-flex justify-content-between">
@@ -168,20 +168,6 @@ mode.addEventListener('click', function(){
     }
 })
 
-// show/hide sections w/ Active vs. Inactive
-function showSections(input){
-    for (let section of allSections){
-        // to reset the display
-        section.classList.remove('d-none')
-        const switchButton = section.querySelector('.switch')
-        if (input.id === 'active' && !switchButton.checked){
-            section.classList.add('d-none');
-        } else if (input.id === 'inactive' && switchButton.checked){
-            section.classList.add('d-none');
-        }
-    }
-}
-
 // selected vs. selected-dark
 for (let input of allRadioInputs){
     input.addEventListener('change', function(){
@@ -197,21 +183,35 @@ for (let input of allRadioInputs){
             parent.classList.add('selected');
         }
 
-        showSections(this);
+        showSections(this.id);
     })
 }
 
-// update Active vs. Inactive w/ every Switch change
-const allSwitchButtons = document.querySelectorAll('.switch-input');
-function getCurrentFilter() {
-    for (radioInput of allRadioInputs){
-        if(radioInput.checked){
-            return radioInput;
+// show/hide sections w/ All vs. Active vs. Inactive
+function showSections(filter){
+    for (let section of allSections){
+        // to reset the display
+        section.classList.remove('d-none')
+
+        const switchInput = section.querySelector('.switch-input');
+        if (filter === 'active' && !switchInput.checked){
+            section.classList.add('d-none');
+        } else if (filter === 'inactive' && switchInput.checked){
+            section.classList.add('d-none');
         }
     }
 }
-for (let switchButton of allSwitchButtons){
-    switchButton.addEventListener('change', function(){
+
+// update Active vs. Inactive w/ every Switch change
+function getCurrentFilter() {
+    for (let radioInput of allRadioInputs){
+        if(radioInput.checked) return radioInput.id;
+    }
+}
+
+const allSwitchInputs = document.querySelectorAll('.switch-input');
+for (let switchInput of allSwitchInputs){
+    switchInput.addEventListener('change', function(){
         showSections(getCurrentFilter());
     })
 }
