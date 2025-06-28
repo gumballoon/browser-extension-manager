@@ -99,7 +99,7 @@ for (i of data){
         </div>
     </div>
     <div class="mt-3 mb-2 d-flex justify-content-between">
-        <button class="rounded-pill py-1 px-3 border">Remove</button>
+        <button class="rounded-pill py-1 px-3 border" title="Remove the extension (cannot be undone)">Remove</button>
                     
         <div class="position-relative align-self-center my-0 rounded-pill switch">
             <input type="checkbox" class="rounded-pill switch-input">
@@ -107,22 +107,37 @@ for (i of data){
         <div>
     </div>`
 
-    if(i.isActive) section.querySelector('.switch-input').checked = true;
+    const switchInput = section.querySelector('.switch-input');
+    const switchCircle = section.querySelector('.switch-circle');
+    
+    // set the checked & tittle attributes
+    if(i.isActive) {
+        switchInput.checked = true;
+        switchInput.parentElement.title = 'Disable the extension';
+    } else {
+        switchInput.parentElement.title = 'Enable the extension';
+    }
+    
+    // dynamically update the title attribute of the switch
+    switchInput.addEventListener('change', function(){
+        if (this.checked) {
+            this.parentElement.title = 'Disable the extension';
+        } else {
+            this.parentElement.title = 'Enable the extension';
+        }
+
+    })
+
+    // check/uncheck the switch-input when the switch-circle is clicked on 
+    switchCircle.addEventListener('click', function(){
+        switchInput.checked = !switchInput.checked;
+    })
 
     extensions.appendChild(section)
 }
 
 // after populating
 const allSections = document.querySelectorAll('section');
-
-// check/uncheck the switch-input when the switch-circle is clicked on
-for (section of allSections) {
-    const switchInput = section.querySelector('.switch-input');
-    const switchCircle = section.querySelector('.switch-circle');
-    switchCircle.addEventListener('click', function(){
-        switchInput.checked = !switchInput.checked;
-    })
-}
 
 // Dark move vs. Light mode
 mode.addEventListener('click', function(){
